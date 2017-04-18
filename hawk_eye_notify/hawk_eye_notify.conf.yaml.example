@@ -1,0 +1,18 @@
+expected_fields:
+  - output
+  - source
+
+product_template_map:
+  pigeon:
+    v1: pigeon_v1.html
+  lineman:
+    v1: lineman_v1.html
+  failed:
+    v1: failed_v1.html
+
+email_settings:
+  host: smtp.example.com
+  port: 25
+  from_email: example@example.com
+  to_emails:
+    - example2@example.com 

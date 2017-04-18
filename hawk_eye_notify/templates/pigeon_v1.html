@@ -1,0 +1,14 @@
+Pigeon has completed.
+Log file: {{file_path}}
+
+ There were {{ output.num_subjects_uploaded }} subjects uploaded.
+ {% for subject in output.subjects_uploaded %}
+     subject: {{ subject }}
+ {% endfor %}
+ Here are the errors:
+ {% for error in errors %}
+    {{ output.error }}
+ {% endfor %}
+ Total data points updated: {{ output.datapoints_updated }}
+ Start time: {{ output.start_time }}
+ End Time: {{ output.end_time }}
