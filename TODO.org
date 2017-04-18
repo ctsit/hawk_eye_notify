@@ -1,0 +1,31 @@
+* eagly_eye_notify TODO:
+** DONE Remove hard coded paths
+CLOSED: [2017-04-18 Tue 09:15]
+- [X] build_template json file path 
+** DONE Move log files once they have been processed
+CLOSED: [2017-04-18 Tue 10:53]
+- [X] Successful files get moved to 'Completed' directory
+- [X] Failed files get moved to 'Failed' directory
+** DONE Create basic templates
+CLOSED: [2017-04-18 Tue 11:57]
+- [X] Lineman
+- [X] Failed
+** Misc cleanup
+- [X] Remove unneccessary print statements
+- [X] update the watched events
+- [X] Add filename to template
+- [X] Rename tool to Hawk_eye_notify 
+- 
+** Update pigeon and lineman to include 'source' in their logs
+- [ ] Pigeon has source key
+- [ ] Pigeon has output key
+- [ ] Lineman has source key
+- [ ] Lineman has output key
+** Create Open Source Documents
+- [ ] README
+- [ ] AUTHORS
+- [ ] setup 
+** Release a version on GIT
+- [ ] Create GIT repo
+- [ ] Init git flow
+- [ ] push version
