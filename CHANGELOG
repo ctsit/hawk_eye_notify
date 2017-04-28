@@ -1,0 +1,18 @@
+
+# CHANGELOG
+# ref: http://keepachangelog.com/en/0.3.0/
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
+and this project adheres to [Semantic Versioning](http://semver.org/).
+
+Example
+## [0.0.x] 2017-04-26
+### Added
+  - Add LICENSE file
+### Changed
+  - Changed LICENSE from MIT to Apache
+### Fixed
+  - Fixed the missing copyright details in LICENSE file
+-------------------------------------------------------------------------
+-------------------------------------------------------------------------

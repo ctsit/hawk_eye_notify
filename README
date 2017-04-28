@@ -1,0 +1,3 @@
+# hawk_eye_notify
+Hawk_eye_notify is a file watching framework designed to do a job whenever an
+event happens in the directory being watched.
