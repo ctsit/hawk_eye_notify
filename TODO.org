@@ -7,10 +7,13 @@ Examples:
 CLOSED: [2017-04-28 Fri 09:48]
 
 * High priority new task
+
 ** TODO: [A] (devmattm@gmail.com)20170301 20170302  This is the text of my TODO item. +HCVProject @gitrepo(location, etc..)
 - [ ] 
-- [ ] 
+- [ ]
 
+** TODO [A] (devmattm@gmail.com)<2017-04-28 Fri> As a customer, I would like to easily install this tool with pip
+- [ ] create setup.py 
 * Medium priority new task
 ** TODO [B] (devmattm@gmail.com)<2017-04-28 Fri> As a first time user of this tool, I would like better documentation on what the tool is and how to use it in order to feel confident when I go to use it. +docs 
 - [ ] Good description of what the tool does
@@ -18,7 +21,8 @@ CLOSED: [2017-04-28 Fri 09:48]
 ** TODO [B] (devmattm@gmail.com)<2017-04-28 Fri> As a developer, I want to be confident that my changes didn't break anything in order to keep rapid development.
 - [ ] Write unit tests 
 * Low priority task
-** TODO: [C] (devmattm@gmaviews/il.com)20170301 20170302 This is the text of my TODO item. +context @webserver
+** TODO [C] (devmattm@gmail.com)<2017-04-28 Fri> As a developer, I may want hawk_eye to run different jobs besides emails 
+- [ ] Hawk eye can take a script as the job it runs 
 ** TODO: [C] (devmattm@gmail.com)2017
 ** TODO: [C] (devmattm@gmail.com)2017
 ** TODO: [C] (devmattm@gmail.com)2017
@@ -55,3 +59,4 @@ CLOSED: [2017-04-28 Fri 14:46]
 - [X] Create GIT repo
 - [X] Init git flow
 - [X] push version
+  
