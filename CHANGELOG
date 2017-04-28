@@ -16,3 +16,12 @@ Example
   - Fixed the missing copyright details in LICENSE file
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------
+## [0.1.0] 2017-04-28
+ * Add a changelog file for future releases (Matthew McConnell)
+ * Update open source documentation (Matthew McConnell)
+ * Updated license to Apache version (Buck72)
+ * Added authors to file (Buck72)
+ * Create README.md (Buck at UF)
+ * initial commit 2 (Matthew McConnell)
+ * Initial commit 1 (Matthew McConnell)
+ * Initial commit (Matthew McConnell)
