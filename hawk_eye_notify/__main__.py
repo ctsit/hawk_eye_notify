@@ -1,27 +1,30 @@
-VER= '1.0.0'
 docstr = """hawk_eye_notify
 
 Usage:
   hawk_eye_notify.py --version
-  hawk_eye_notify.py <watch_dir_path> [--conf=<conf_file>] [--rec]
+  hawk_eye_notify.py [-hv] <watch_dir_path> <run_name>
+  hawk_eye_notify.py [-hv] <watch_dir_path> <run_name> [-c <conf_file>] [-t <template_dir>] [-o <output_path>]
 
 Arguments:
-  <watch_dir_path>                    Full path to directory being watched
+  <watch_dir_path>                                 Full path to directory being watched
+  <run_name>                                       A unique name for this hawk_eye run
 
 Options:
-  -h --help                           Show this screen.
-  -v --version                        Show version.
-  -r --rec                            Recursively add watches on all directories
-  -c=<conf_file> --conf=<conf_file>   Config file path
-                                      [default: hawk_eye_notify.conf.yaml]
+  -h --help                                        Show this screen.
+  -v --version                                     Show version.
+  -t <template_dir> --templates=<template_dir>     Directory where templates directory is found
+  -o <output_path> --output=<output_path>          Path to output log
+  -c=<conf_file> --conf=<conf_file>                Config file path
+                                                   [default: hawk_eye_notify.conf.yaml]
 """
-
-import json
 
 from docopt import docopt
 import pyinotify
-from templater import Templater
-from send_email import send_email
+from hawk_eye_notify.templater import Templater
+from hawk_eye_notify.send_email import send_email
+from hawk_eye_notify.version import __version__
+
+import json
 import yaml
 import sys
 import os
@@ -31,38 +34,41 @@ _fail_template = 'failed_v1'
 
 class EventHandler(pyinotify.ProcessEvent):
     def my_init(self, **kargs):
-        self.local_path = kargs['local_path']
-        self.templater = Templater(self.local_path)
+        self.run_path = kargs.get('run_path', os.getcwd())
+        self.templater = Templater(kargs.get('templates_path',os.getcwd()))
 
     def process_IN_CREATE(self, event):
         #event.pathname has a leading /, linux thinks it's absolute
-        full_event_path = self.local_path + event.pathname
+        full_event_path = os.path.join(self.run_path, event.name)
 
         print("New file: ", full_event_path)
         log, success = read_log(full_event_path)
         if success:
             print("File moved to completed")
-            move_to_dir(full_event_path, os.path.join(self.local_path, completed_path))
+            move_to_dir(full_event_path, os.path.join(self.run_path, completed_path))
         else:
             print("File moved to failed")
-            move_to_dir(full_event_path, os.path.join(self.local_path, failed_path))
+            move_to_dir(full_event_path, os.path.join(self.run_path, failed_path))
 
         template = build_template(self.templater, log, success)
         build_email(template, success)
 
-def main(args=docopt(docstr)):
-    local_path = sys.path[0]
+def main(args):
+    run_name = args['<run_name>']
+    templates_path = os.path.realpath(args['--templates'] or os.getcwd())
+    output_path = os.path.realpath(args['--output'] or (os.path.join(os.getcwd(), run_name + '.log')))
+    watched_dir = os.path.realpath(args['<watch_dir_path>'])
+
     wm = pyinotify.WatchManager()
-    handler = EventHandler(local_path=local_path)
+    handler = EventHandler(run_path=watched_dir, templates_path=templates_path)
     notifier = pyinotify.Notifier(wm,handler)
 
     global configs
     configs = __read_config(args['--conf'])
-    __make_processed_dirs(args['<watch_dir_path>'])
+    __make_processed_dirs(watched_dir)
     wm.add_watch(args['<watch_dir_path>'], pyinotify.IN_CREATE, rec=True)
     try:
-        notifier.loop(daemonize=True, pid_file=os.path.join(local_path, 'hawk_eye_notify.pid'),
-                      stdout=os.path.join(local_path, 'hawk_eye_notify.log'))
+        notifier.loop(daemonize=True,  pid_file=os.path.join('/tmp', run_name + '.pid'), stdout=output_path)
     except pyinotify.NotifierError as err:
        print("error:", err)
 
@@ -166,6 +172,10 @@ def build_email(template, success=True):
 
     print("Email sent\n")
 
+def cli_run():
+    args = docopt(docstr, version = 'Hawk_Eye_Notify %s' % __version__)
+    main(args)
+
 if __name__ == '__main__':
-    arguments = docopt(docstr, version=VER)
-    main(arguments)
+    cli_run()
+    exit()
