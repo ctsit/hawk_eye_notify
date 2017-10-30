@@ -16,6 +16,7 @@ setup(name='hawk_eye_notify',
       author_email='devmattm@gmail.com',
       license='Apache License 2.0',
       packages=['hawk_eye_notify'],
+      include_package_data=True,
       entry_points={
           'console_scripts': [
               'hawk_eye_notify = hawk_eye_notify.__main__:cli_run',
