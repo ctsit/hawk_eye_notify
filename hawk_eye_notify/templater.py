@@ -3,9 +3,9 @@ import yaml
 import os
 
 class Templater():
-    def __init__(self, path):
+    def __init__(self, abs_path):
         self.env = Environment(
-            loader = FileSystemLoader(os.path.join(path,'templates')),
+            loader = FileSystemLoader(abs_path),
             autoescape=select_autoescape(['html', 'xml'])
         )
 
