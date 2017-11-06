@@ -36,7 +36,6 @@ def main(args):
     script = os.path.realpath(args['<script>'])
     xargs = args['<xargs>']
 
-    print(args)
     watcher.new_created_watcher(watched_dir,run_name, output_path, script, xargs)
 
 def cli_run():

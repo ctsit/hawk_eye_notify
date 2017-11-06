@@ -12,7 +12,7 @@ class EventHandler(pyinotify.ProcessEvent):
         print("Running script: ", self.runnable_script)
         args = [self.runnable_script, os.path.abspath(event.pathname)]
         args.extend(self.xargs)
-        print(args)
+        print("Like: ", args)
         subprocess.Popen(args, stderr=subprocess.STDOUT)
         print("Finished with new file")
 
