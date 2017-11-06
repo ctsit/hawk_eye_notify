@@ -6,9 +6,6 @@ def get_config(config_file_path, config_to_get):
 
 
 def __read_config(config_file_path):
-    """
-    Read in a YAML config file
-    """
     config = None
     with open(config_file_path, 'r') as config_file:
         try:

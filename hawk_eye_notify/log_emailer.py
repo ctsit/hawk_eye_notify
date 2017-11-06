@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys, os
 import json
 from templater import get_template
@@ -64,5 +65,6 @@ def build_email(template, success, config_file_path):
 if __name__ == '__main__':
     log_path = 1
     config_path = 2
+    print(sys.executable)
     event_handler(sys.argv[log_path], sys.argv[config_path])
     exit()

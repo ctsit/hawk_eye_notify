@@ -13,6 +13,7 @@ _map_conf = 'product_template_map'
 _fail_template = 'failed_v1'
 
 def get_template(data_dict, config_file_path):
+    print("Templace config_file_path: " ,config_file_path)
     config = get_config(config_file_path, _template_settings)
     env = Environment(
         loader = FileSystemLoader(os.path.abspath(config[_template_location])),
