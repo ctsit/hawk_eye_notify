@@ -2,15 +2,15 @@
 Hawk_eye_notify is a file watching framework designed to do a job whenever an
 event happens in the directory being watched.
 
-To use this tool, there are two required arguments that must be supplied:
+To use this tool, there are three required arguments that must be supplied:
    1. A directory to watch - watches the directory and any directory in it
    2. A unique name for running process - used to name the log and pid files
+   3. The action that should occur when something happens in the watched dir
 
-If running it in a seperate directory from the conf and templates path, then those paths
+If running it in a seperate directory from the conf then that path
 need to be specified as well.
 
-Templates need to be in their own directory, specified by -t if not in the same
-directory that Hawk Eye is being run in.
+Templates need to be in their own directory, specified in the config file
 
 When this application is started, it will create a <unique_name>.pid file in /tmp.
 This pid file contains the process ID for the running daemon, which can be

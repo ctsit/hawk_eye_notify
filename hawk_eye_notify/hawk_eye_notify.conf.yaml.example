@@ -2,13 +2,17 @@ expected_fields:
   - output
   - source
 
-product_template_map:
-  pigeon:
-    v1: pigeon_v1.html
-  lineman:
-    v1: lineman_v1.html
-  failed:
-    v1: failed_v1.html
+templater:
+  template_location: /templates
+  product_template_map:
+      pigeon:
+        v1: pigeon_v1.html
+      lineman:
+        v1: lineman_v1.html
+      none:
+        v1: none_v1.html
+      failed:
+        v1: failed_v1.html
 
 email_settings:
   host: smtp.example.com
