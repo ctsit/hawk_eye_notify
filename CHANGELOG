@@ -16,6 +16,17 @@ Example
   - Fixed the missing copyright details in LICENSE file
 -------------------------------------------------------------------------
 -------------------------------------------------------------------------
+## [1.0.0] 2017-11-07
+### Summary
+This release is a big refactor of the original. Hawk_Eye_Notify can
+now take any executable and run it whenever a file event happens in
+the watched directory. HEN can also now be installed using pip -e.
+
+### Added
+ * allow any executable to be ran with xargs passed to HEN (Matthew McConnell)
+ * add a MANIFEST file to include the templates (Matthew McConnell)
+ * make hawk_eye pip installable as well as able to run from the command line properly (Matthew McConnell)
+
 ## [0.1.0] 2017-04-28
  * Add a changelog file for future releases (Matthew McConnell)
  * Update open source documentation (Matthew McConnell)

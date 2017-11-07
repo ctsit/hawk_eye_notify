@@ -1,8 +1,11 @@
 import smtplib
 from email.message import EmailMessage
+from yaml_reader import get_config
 
+#This script requires a yaml config file with the following dict:
+_email_settings_name = "email_settings"
 
-def send_email(subject, message_body, configs):
+def send_email(subject, message_body, config_file_path):
     '''
     Create an email message using pythons smtplib and EmailMessage.
     It returns a dictionary, with one entry for each recipient that was
@@ -12,12 +15,14 @@ def send_email(subject, message_body, configs):
     Args:
     subject: a string for the subject line
     message_body: a string for the email message body
-    settings: a dictionary with the following keys:
+    config_file_path: a path to a yaml settings file
+        the email_settings is a dictionary with the following keys:
         host: the host that is sending the emails
         port: the port required to send emails through
         from_email: who the email is coming from
         to_emails: either a string or list of email address being sent to
     '''
+    configs = get_config(config_file_path, _email_settings_name)
     msg = __create_message(subject, message_body, configs)
     return __send(msg, configs)
 

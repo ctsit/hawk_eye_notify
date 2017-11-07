@@ -7,13 +7,9 @@ Examples:
 CLOSED: [2017-04-28 Fri 09:48]
 
 * High priority new task
-
-** TODO: [A] (devmattm@gmail.com)20170301 20170302  This is the text of my TODO item. +HCVProject @gitrepo(location, etc..)
-- [ ] 
-- [ ]
-
-** TODO [A] (devmattm@gmail.com)<2017-04-28 Fri> As a customer, I would like to easily install this tool with pip
-- [ ] create setup.py 
+** DONE [A] (devmattm@gmail.com)<2017-04-28 Fri> As a customer, I would like to easily install this tool with pip
+   CLOSED: [2017-10-13 Fri 15:30]
+- [X] create setup.py<2017-10-13 Fri>   
 * Medium priority new task
 ** TODO [B] (devmattm@gmail.com)<2017-04-28 Fri> As a first time user of this tool, I would like better documentation on what the tool is and how to use it in order to feel confident when I go to use it. +docs 
 - [ ] Good description of what the tool does
