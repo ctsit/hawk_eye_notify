@@ -8,12 +8,17 @@ from yaml_reader import get_config
 # Required config fields:
 _expected_fields = 'expected_fields'
 
-def event_handler(full_event_path, config_file_path):
+def event_handler(full_event_path, config_file_path, site):
     log, success = read_in_log(full_event_path)
     log, success = validate_log(log, success, full_event_path, config_file_path)
 
     template = get_template(log,config_file_path)
-    build_email(template, success, config_file_path)
+    build_email(template,
+                success,
+                config_file_path,
+                **{
+                    'site': site
+                })
 
 def read_in_log(file_path):
     success = True
@@ -52,12 +57,14 @@ def validate_log(log, success, file_path, config_file_path):
 def generate_fail_log(output, error):
     return {'output': output, 'error': error, 'source': 'failed_v1'}
 
-def build_email(template, success, config_file_path):
+def build_email(template, success, config_file_path, **kwargs):
     #an email needs a host, port, subject, message, from, to, and maybe type (html/txt)
     if success:
-        subject = 'Log has been successfully processed'
+        subject = 'Log for site {site} has been successfully processed'
     else:
-        subject = 'Log was unable to be processed'
+        subject = 'Log for site {site} was unable to be processed'
+
+    subject = subject.format(**kwargs)
 
     send_email(subject, template, config_file_path)
     print("Email sent\n")
@@ -65,6 +72,9 @@ def build_email(template, success, config_file_path):
 if __name__ == '__main__':
     log_path = 1
     config_path = 2
+    site = 3
     print(sys.executable)
-    event_handler(sys.argv[log_path], sys.argv[config_path])
+    event_handler(sys.argv[log_path],
+                  sys.argv[config_path],
+                  sys.argv[site])
     exit()
